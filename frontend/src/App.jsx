@@ -1,12 +1,13 @@
 import React from 'react'
+import Nav from './Nav'
 
+import Create from './Create';
 const App = () => {
   return (
     <div className="App">
-      <h1></h1>
+      home
     </div>
-    
-  )
+)
 }
 
 export default App
