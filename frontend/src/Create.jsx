@@ -7,7 +7,7 @@ import Title from './Title';
 const Create = () => {
     return (
         <div className="container p-5">
-            <Nav />
+           
             <Title name="create blog post"  subTitle="my sub title"/>
             <h1>CREATE POST</h1>
             <br />
