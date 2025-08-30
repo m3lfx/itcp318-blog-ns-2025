@@ -32,3 +32,14 @@ exports.list = async (req, res) => {
         return res.status(200).json(posts)
     return res.status(400).json({ error: "list posts error" })
 };
+
+exports.read = async (req, res) => {
+    console.log(req.params.slug)
+    // const slug = req.params.slug
+    const { slug } = req.params;
+    console.log(slug)
+    const post = await Post.findOne({ slug}).exec()
+    if (!post)
+        return res.status(400).json({ error: "post error" })
+    return res.status(200).json(post)
+}; 
