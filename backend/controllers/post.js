@@ -55,3 +55,12 @@ exports.update = async (req, res) => {
 
     
 };
+
+exports.remove = async (req, res) => {
+    // console.log(req.pramas.slug)
+    const { slug } = req.params;
+    const post = await Post.deleteOne({ slug })
+    if (!post)
+        return res.status(400).json({ error: "delete post error" })
+    return res.status(200).json({ message: "post deleted"} )
+};
