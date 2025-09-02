@@ -16,6 +16,25 @@ const App = () => {
       .catch(error => alert('Error fetching posts'));
   }
 
+  const deleteConfirm = slug => {
+    let answer = window.confirm('Are you sure you want to delete this post?');
+    if (answer) {
+      deletePost(slug);
+    }
+  };
+
+  const deletePost = slug => {
+    // console.log('delete', slug, ' post');
+    axios
+      .delete(`${import.meta.env.VITE_APP_API}post/${slug}`, 
+       )
+      .then(response => {
+        alert(response.data.message);
+        fetchPosts();
+      })
+      .catch(error => alert('Error deleting post'));
+  };
+
   useEffect(() => {
     fetchPosts();
   }, [])
@@ -38,7 +57,7 @@ const App = () => {
               Update
             </Link>
             <button
-              // onClick={() => deleteConfirm(post.slug)}
+              onClick={() => deleteConfirm(post.slug)}
               className="btn btn-sm btn-outline-danger ml-1"
             >
               Delete
