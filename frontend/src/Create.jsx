@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 import Title from './Title';
 import axios from 'axios'
+import { getUser, getToken } from './helpers';
 
 
 const Create = () => {
@@ -11,7 +12,7 @@ const Create = () => {
     const [state, setState] = useState({
         title: '',
         content: '',
-        user: '',
+        user: getUser(),
     });
 
     const handleChange = name => event => {
@@ -24,9 +25,13 @@ const Create = () => {
     const handleSubmit = event => {
         event.preventDefault();
         // console.table({ title, content, user });
+       
         axios
-            .post(`${import.meta.env.VITE_APP_API}post`, { title, content, user }
-            ).then(response => {
+            .post(`${import.meta.env.VITE_APP_API}post`, { title, content, user }, {
+                headers: {
+                    authorization: `Bearer ${getToken()}`
+                }
+            }).then(response => {
                 console.log(response);
                 
                 setState({ ...state, title: '', content: '', user: '' });

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import axios from 'axios';
+
+import { getToken } from './helpers';
 const App = () => {
 
   const [posts, setPosts] = useState([])
@@ -26,8 +28,12 @@ const App = () => {
   const deletePost = slug => {
     // console.log('delete', slug, ' post');
     axios
-      .delete(`${import.meta.env.VITE_APP_API}post/${slug}`, 
-       )
+      .delete(`${import.meta.env.VITE_APP_API}post/${slug}`,
+        {
+          headers: {
+            authorization: `Bearer ${getToken()}`
+          }
+        })
       .then(response => {
         alert(response.data.message);
         fetchPosts();
