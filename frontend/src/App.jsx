@@ -6,7 +6,7 @@ const App = () => {
 
   const [posts, setPosts] = useState([])
 
- const fetchPosts = () => {
+  const fetchPosts = () => {
     axios
       .get(`${import.meta.env.VITE_APP_API}posts`)
       .then(response => {
@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <div className="App">
-       {posts.length > 0 ? posts.map((post) => (
+      {posts.length > 0 ? posts.map((post) => (
         <div className="row" key={post._id} style={{ borderBottom: '1px solid silver' }}>
           <div className="col pt-3 pb-2">
             <Link to={`/post/${post.slug}`}>
@@ -37,17 +37,17 @@ const App = () => {
             <Link to={`/post/update/${post.slug}`} className="btn btn-sm btn-outline-warning">
               Update
             </Link>
-             <button
-                  // onClick={() => deleteConfirm(post.slug)}
-                  className="btn btn-sm btn-outline-danger ml-1"
-                >
-                  Delete
-                </button>
+            <button
+              // onClick={() => deleteConfirm(post.slug)}
+              className="btn btn-sm btn-outline-danger ml-1"
+            >
+              Delete
+            </button>
 
           </div>
         </div>
       )) : <h1>no posts</h1>}
-     
+
 
 
     </div>
